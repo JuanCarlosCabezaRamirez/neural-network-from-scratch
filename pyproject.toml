@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "numpy-nn"
-version = "0.2.0"
+version = "0.3.0"
 description = "A neural network implemented from scratch with NumPy"
 requires-python = ">=3.10"
 dependencies = ["numpy"]
