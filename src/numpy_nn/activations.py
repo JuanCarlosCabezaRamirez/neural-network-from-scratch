@@ -76,6 +76,15 @@ class ReLU:
         dx = dy * f_derivative
         return dx
 
+    def parameters(
+        self,
+    ) -> list[tuple[NDArray[np.float64], NDArray[np.float64] | None]]:
+        """Return an empty list, as ReLU does not have trainable parameters.
+
+        It exists so that ``Sequential`` can treat every layer in the same way.
+        """
+        return []
+
 
 class Sigmoid:
     """Sigmoid function computes 1/(1+exp(-a)) for each a in x.
@@ -153,6 +162,15 @@ class Sigmoid:
         dx = dy * f_derivative
         return dx
 
+    def parameters(
+        self,
+    ) -> list[tuple[NDArray[np.float64], NDArray[np.float64] | None]]:
+        """Return an empty list, as Sigmoid does not have trainable parameters.
+
+        It exists so that ``Sequential`` can treat every layer in the same way.
+        """
+        return []
+
 
 class Tanh:
     """The hyperbolic tangent function computes sinh(a)/cosh(a)=(exp(a)-exp(-a))/(exp(a)+exp(-a)).
@@ -211,3 +229,12 @@ class Tanh:
         f_derivative = 1 - self._output**2
         dx = dy * f_derivative
         return dx
+
+    def parameters(
+        self,
+    ) -> list[tuple[NDArray[np.float64], NDArray[np.float64] | None]]:
+        """Return an empty list, as hypeborlic tangent does not have trainable parameters.
+
+        It exists so that ``Sequential`` can treat every layer in the same way.
+        """
+        return []

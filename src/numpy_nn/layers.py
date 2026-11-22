@@ -98,3 +98,17 @@ class Dense:
         self.grad_biases = dy.sum(axis=0)
         dx = dy @ self.weights.T
         return dx
+
+    def parameters(
+        self,
+    ) -> list[tuple[NDArray[np.float64], NDArray[np.float64] | None]]:
+        """Return the trainable parameters with their gradients.
+
+        Returns:
+            ``[(weights, grad_weights), (biases, grad_biases)]`` with shapes
+            (n_inputs, n_neurons) and (n_neurons,). The arrays are the layer's
+            own objects, not copies. The gradients are None until ``backward``
+            has been called. Each ``backward`` replaces them, so call this
+            method again after a backward pass.
+        """
+        return [(self.weights, self.grad_weights), (self.biases, self.grad_biases)]
